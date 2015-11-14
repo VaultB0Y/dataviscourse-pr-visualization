@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homework 2 Solution</title>
+    <title>Project</title>
     <style>
         .axis text {
             font: 10px sans-serif;
+        }
+        .axis line,
+        .axis path {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
         }
 
         .barChart {
@@ -58,7 +64,8 @@
 
 <body>
 <script src="script.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<script src="http://www.d3plus.org/js/d3.js"></script>
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
 <h3>CS-6630 project</h3>
 
 <br/>
@@ -103,6 +110,14 @@
     </svg>
 </div>
 
+<div>
+    <h2>TreeMap</h2>
+    <svg id="treeMap" width="600" height="400">
+        <g transform="translate(0, 200) scale(1, 1)">
+
+        </g>
+    </svg>
+</div>
 
 <div>
     <h2>Line Charts</h2>
@@ -123,6 +138,16 @@
         </g>
     </svg>
 </div>
+
+<div>
+    <h2>BoxPlot</h2>
+
+    <svg id="boxPlot" width="800" height="400">
+        <g transform="translate(0, 300) scale(1, 1)">
+        </g>
+    </svg>
+</div>
+
 
 <!--<div>-->
     <!--<h2>Area Charts</h2>-->

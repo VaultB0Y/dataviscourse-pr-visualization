@@ -179,6 +179,18 @@ function updateGenre(error, data) {
         });
 
 
+    //
+    //TreeMap
+    //
+    // instantiate d3plus
+    var treeMap = d3plus.viz()
+        .container("#treeMap")  // container DIV to hold the visualization
+        .data(data)  // data to use with the visualization
+        .type("tree_map")   // visualization type
+        .id("genre")         // key for which our data is unique on
+        .size("recordNum")      // sizing of blocks
+        .draw()             // finally, draw the visualization!
+
     //var aLineGenerator = d3.svg.line()
     //    .x(function (d, i) {
     //        return iScale(i);
@@ -385,10 +397,39 @@ function updateYear(error, data) {
         .attr("d", numLineGen(data));
 }
 
+function updateRating(error, data) {
+    if (error !== null) {
+        alert("Couldn't load the dataset!");
+    } else {
+        data.forEach(function (d) {
+            d.userID = parseInt(d.userID);
+            d.movieID = parseFloat(d.movieID);
+            d.rating = parseFloat(d.rating);
+        });
+    }
+
+    //
+    // Box Plot
+    //
+    console.log(data);
+    var boxPlot = d3plus.viz()
+        .container('#boxPlot')
+        .data(data)
+        .type("box")
+        .id("userID")
+        .x("movieID")
+        .y("rating")
+        //.ui([{
+        //    "label": "Visualization Type",
+        //    "method": "type",
+        //    "value": ["scatter","box"]
+        //}])
+        .draw();
+}
+
 
 function loadData() {
-    //var dataFile = document.getElementById('dataset').value;
-    d3.csv('Genre.csv', updateGenre);
-    d3.csv('Year.csv', updateYear);
-    //d3.csv('Year.csv', updateYear);
+    d3.csv('data/Genre.csv', updateGenre);
+    d3.csv('data/Year.csv', updateYear);
+    d3.csv('data/UserRating.csv', updateRating);
 }
