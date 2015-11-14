@@ -10,10 +10,12 @@ function updateGenre(error, data) {
         });
     }
     // Set up the scales
-    var height = 150
-        ,width = 300
+    var height = 250
+        ,width = 400
         ,leftOff = 50
-        ,barWidth = width/data.length;
+        ,wGap = 4
+        ,barGap = width/data.length
+        ,barWidth = barGap - wGap;
 
     var ratingScale = d3.scale.linear()
         .domain([2.5, d3.max(data, function (d) {
@@ -49,7 +51,7 @@ function updateGenre(error, data) {
 
     d3.select('#aBar').append("g")
         .attr("class", "xAxis axis")
-        .attr("transform", "translate(" + leftOff +"," + 200 + ")")
+        .attr("transform", "translate(" + leftOff +"," + 250 + ")")
         .call(xAxis)
         .selectAll("text")
         .data(data)
@@ -61,7 +63,7 @@ function updateGenre(error, data) {
             return d.genre;
         });
     d3.select('#aBar').append('g')
-        .attr("transform", "translate(" + 50 +"," + 50 + ")")
+        .attr("transform", "translate(" + 50 +"," + 0 + ")")
         .attr("class", "ratingAxis axis")
         .call(ratingAxis);
 
@@ -72,7 +74,7 @@ function updateGenre(error, data) {
         .attr("class","barChart")
         .attr("opacity",0);
 
-    aBar.attr('x',function(d,i){return leftOff + i * barWidth;})
+    aBar.attr('x',function(d,i){return leftOff + wGap + i * barGap;})
         .attr('width', barWidth)
         .transition()
         .duration(1000)
@@ -95,7 +97,7 @@ function updateGenre(error, data) {
 
     d3.select('#bBar').append("g")
         .attr("class", "xAxis axis")
-        .attr("transform", "translate(" + leftOff +"," + 200 + ")")
+        .attr("transform", "translate(" + leftOff +"," + 250 + ")")
         .call(xAxis)
         .selectAll("text")
         .data(data)
@@ -108,7 +110,7 @@ function updateGenre(error, data) {
         });
 
     d3.select('#bBar').append('g')
-        .attr("transform", "translate(" + 50 +"," + 50 + ")")
+        .attr("transform", "translate(" + 50 +"," + 0 + ")")
         .attr("class", "numAxis axis")
         .call(numAxis);
 
@@ -117,7 +119,7 @@ function updateGenre(error, data) {
     bBar.enter().append("rect")
         .attr("class","barChart")
         .attr("opacity",0);
-    bBar.attr('x',function(d,i){return leftOff + i * barWidth})
+    bBar.attr('x',function(d,i){return leftOff + wGap + i * barGap})
         .attr('y', function(d){return -numScale(d.recordNum);})
         .attr('width', barWidth)
         .transition()
