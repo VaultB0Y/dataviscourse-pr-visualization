@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 2 Solution</title>
+    <style>
+        .axis text {
+            font: 10px sans-serif;
+        }
+
+        .barChart {
+            fill: steelblue;
+            stroke: darkgray;
+            stroke-width: 1px;
+        }
+
+        /*rect.barChart:hover {*/
+            /*fill: red;*/
+        /*}*/
+
+        .arc path {
+            stroke: #fff;
+        }
+
+        .lines {
+            stroke: steelblue;
+            fill: none
+        }
+
+        .areas {
+            stroke: none;
+            fill: steelblue
+        }
+
+        circle {
+            fill: steelblue;
+        }
+
+        .frame {
+            fill: none;
+            stroke: black;
+            stroke-width: 2px;
+        }
+
+        /* Styles that clean up the layout;
+         * you can ignore these */
+        div {
+            display: inline-block;
+            border: 1px solid lightgray;
+            margin: 1em;
+        }
+
+        div, span {
+            padding: 1em;
+        }
+    </style>
+</head>
+
+<body>
+<script src="script.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<h3>CS-6630 project</h3>
+
+<br/>
+<hr/>
+<br/>
+
+<br/>
+
+<div>
+    <h2>Bar Charts</h2>
+    <svg id="aBar" width="400" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<rect class="barChart" x="0" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="20" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="40" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="60" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="80" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="100" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="120" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="140" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="160" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="180" y="0" height="0" width="20"/>-->
+            <!--<rect class="barChart" x="200" y="0" height="0" width="20"/>-->
+        </g>
+    </svg>
+
+    <svg id="bBar"width="400" height="300">
+        <!-- Paste your HW 1 solution here -->
+        <g transform="translate(0, 200) scale(1, 1)">
+        </g>
+    </svg>
+</div>
+
+
+
+<div>
+    <h2>Pie Charts</h2>
+    <svg id="aPie" width="400" height="400">
+        <g transform="translate(0, 200) scale(1, 1)">
+
+        </g>
+    </svg>
+</div>
+
+
+<div>
+    <h2>Line Charts</h2>
+
+    <svg id="aLine" width="800" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<path class="lines" d="M0 100 L20 80 L40 130 L60 90 L80 110 L100 140 L120 60-->
+        <!--L140 40 L160 120 L180 70 L200 50"/>-->
+            <path class="lines"/>
+        </g>
+    </svg>
+
+    <svg id="bLine" width="800" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<path class="lines" d="M0 91.4 L20 81.4 L40 87.4 L60 87.7 L80 92.6 L100 81 L120 61.3-->
+        <!--L140 31 L160 91.3 L180 72.6 L200 47.4"/>-->
+            <path class="lines"/>
+        </g>
+    </svg>
+</div>
+
+<!--<div>-->
+    <!--<h2>Area Charts</h2>-->
+
+    <!--<svg id="aArea" width="200" height="200">-->
+        <!--&lt;!&ndash; Paste your HW 1 solution here &ndash;&gt;-->
+        <!--<g transform="translate(0, 200) scale(1, -1)">-->
+            <!--<path class="areas" d="M0 0 V0 100 L20 80 L40 130 L60 90 L80 110 L100 140 L120 60-->
+        <!--L140 40 L160 120 L180 70 L200 50 V200 0 Z" fill="steelblue"/>-->
+        <!--</g>-->
+    <!--</svg>-->
+
+    <!--<svg id="bArea" width="200" height="200">-->
+        <!--&lt;!&ndash; Paste your HW 1 solution here &ndash;&gt;-->
+        <!--<g transform="translate(0, 200) scale(1, -1)">-->
+            <!--<path class="areas" d="M0 0 V0 91.4 L20 81.4 L40 87.4 L60 87.7 L80 92.6 L100 81 L120 61.3-->
+        <!--L140 31 L160 91.3 L180 72.6 L200 47.4 V200 0 Z" fill="steelblue" />-->
+        <!--</g>-->
+    <!--</svg>-->
+<!--</div>-->
+
+<!--<div>-->
+    <!--<h2>Scatterplot</h2>-->
+
+    <!--<svg id="scatter" width="200" height="200">-->
+        <!--&lt;!&ndash; Paste your HW 1 solution here &ndash;&gt;-->
+        <!--<g transform="translate(0, 200) scale(1, -1)">-->
+            <!--<circle cx="100" cy="91.4" r="6"/>-->
+            <!--<circle cx="80" cy="81.4" r="6"/>-->
+            <!--<circle cx="130" cy="87.4" r="6"/>-->
+            <!--<circle cx="90" cy="87.7" r="6"/>-->
+            <!--<circle cx="110" cy="92.6" r="6"/>-->
+            <!--<circle cx="140" cy="81" r="6"/>-->
+            <!--<circle cx="60" cy="61.3" r="6"/>-->
+            <!--<circle cx="40" cy="31" r="6"/>-->
+            <!--<circle cx="120" cy="91.3" r="6"/>-->
+            <!--<circle cx="70" cy="72.6" r="6"/>-->
+            <!--<circle cx="50" cy="47.4" r="6"/>-->
+        <!--</g>-->
+    <!--</svg>-->
+<!--</div>-->
+<script>loadData();</script>
+</body>
+</html>
