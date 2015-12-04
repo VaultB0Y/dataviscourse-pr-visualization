@@ -1,0 +1,128 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<!-- load D3js -->
+<script src="http://www.d3plus.org/js/d3.js"></script>
+
+<!-- load topojson library -->
+<script src="http://www.d3plus.org/js/topojson.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<dic id="barChart"></dic>>
+<div id="geoMap"></div>
+
+<script>
+    var movies = [];
+    var state2ID = {
+        'WY':'56',
+        'PA':'42',
+        'OH':'39',
+        'NM':'35',
+        'MD':'24',
+        'RI':'44',
+        'OR':'41',
+        'PR':'72',
+        'WI':'55',
+        'ND':'38',
+        'NV':'32',
+        'GA':'13',
+        'NY':'36',
+        'AR':'05',
+        'KS':'20',
+        'NE':'31',
+        'UT':'49',
+        'AK':'02',
+        'MS':'28',
+        'OK':'40',
+        'WV':'54',
+        'MI':'26',
+        'CO':'08',
+        'NJ':'34',
+        'DE':'10',
+        'MT':'30',
+        'WA':'53',
+        'CT':'09',
+        'CA':'06',
+        'KY':'21',
+        'MA':'25',
+        'FL':'12',
+        'ID':'16',
+        'MO':'29',
+        'HI':'15',
+        'AL':'01',
+        'SC':'45',
+        'NH':'33',
+        'SD':'46',
+        'IL':'17',
+        'TN':'47',
+        'IN':'18',
+        'IA':'19',
+        'AZ':'04',
+        'MN':'27',
+        'LA':'22',
+        'DC':'11',
+        'VA':'51',
+        'TX':'48',
+        'VT':'50',
+        'ME':'23',
+        'NC':'37'
+    }
+    var movieRecord =[
+        {"movieID": 110, "recordNum": 125322},
+        {"movieID": 260, "recordNum": 100354},
+    ]
+    var barChart = d3plus.viz()
+            .container("#barChart")
+            .data(movieRecord)
+            .type("bar")
+            .id("movieID")
+            .x("movieID")
+            .y("recordNum")
+            .mouse({
+                "click": function(d){
+                    console.log(d);
+                    var path = "data/movie_user_rating/top20MovieState/"+ d.movieID.toString()+".csv";
+                    d3.csv(path, updateMap);
+                }
+            })
+            .draw()
+    d3.csv('data/top20MovieState/110.csv', updateMap);
+    function updateMap(error, data){
+        // instantiate d3plus
+        for(var i=0;i<data.length;i++){
+            data[i].stateID = state2ID[data[i].state];
+            data[i].recordNum = parseInt(data[i].recordNum);
+            data[i].avgRating = parseFloat(data[i].avgRating);
+        }
+        var visualization = d3plus.viz()
+                .container("#geoMap")        // container DIV to hold the visualization
+                .data(data)        // data to use with the visualization
+                .coords("us.json") // pass topojson coordinates
+                .type("geo_map")          // visualization type
+                .id("stateID")// key for which our data is unique on
+                .text("state")
+                .color({
+                    "heatmap": [ "white" , "purple" ],
+                    "value": "recordNum"
+                })
+                .tooltip("avgRating")         // keys to place in tooltip
+                .draw()                   // finally, draw the visualization!
+    }
+
+//    d3.json("us.json", function (error, usStateData) {
+//        if (error) throw error;
+//
+//        console.log(usStateData.objects.state.geometries);
+//        var state= usStateData.objects.state.geometries;
+//        for(i = 0; i < state.length; i++){
+//            var str="'";
+//            str += state[i].properties.STUSPS10 + "':'";
+//            str += state[i].id + "',";
+//            document.write(str);
+//            document.write("<br/>");
+//        }
+//    });
+</script>

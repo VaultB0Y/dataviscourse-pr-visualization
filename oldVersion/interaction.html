@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Sortable - Handle empty lists</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <style>
+        #sortable1, #sortable2, #sortable3, #dragBase { list-style-type: none; margin: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
+        #sortable1 li, #sortable2 li, #sortable3 li, #dragBase li { margin: 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+    </style>
+    <script>
+        var test = function() {
+            var a = 20;
+            $( "ul.droptrue" ).sortable({
+                connectWith: "ul",
+                //receive: function(e, ui) { sortableIn = 1; console.log('receive');},
+                over: function(e, ui) { sortableIn = 1; console.log('over')},
+                out: function(e, ui) { sortableIn = 0; console.log('out')},
+                beforeStop: function(e, ui) {
+                    if (sortableIn == 0) {
+                        ui.item.remove();
+                    }
+                }
+            });
+
+            $( "ul.dropfalse" ).sortable({
+                connectWith: "ul",
+                dropOnEmpty: false,
+            });
+
+            $( "#sortable1, #sortable2, #sortable3, #dragBase" ).disableSelection();
+
+            $("#sortable3").sortable({
+                receive: function(event, ui){
+                    console.log(ui);
+                    console.log(ui.item.get(0));
+                    //ui.item.get(0).remove();
+                }
+            });
+
+            var item3 = document.createElement("li");
+            //item3.setAttribute('id', 'item3');
+            item3.setAttribute("class", "ui-state-highlight");
+            item3.innerHTML = 'item 3';
+            $("#dragBase").append(item3);
+
+            $( "#dragBase li" ).draggable({
+                connectToSortable: "#sortable1, #sortable2, #sortable3",
+                helper: "clone",
+                appendTo: "parent"
+                //revert: "invalid"
+            });
+        }
+        $(test);
+    </script>
+</head>
+<body>
+
+<ul id="sortable1" class="droptrue">
+    <li id = 'item1' class="ui-state-default">Can be dropped..</li>
+    <li id = 'item2' class="ui-state-default">..on an empty list</li>
+    <li class="ui-state-default">Item 3</li>
+    <li class="ui-state-default">Item 4</li>
+    <li class="ui-state-default">Item 5</li>
+</ul>
+
+<ul id="sortable2" class="dropfalse">
+    <li class="ui-state-highlight">Cannot be dropped..</li>
+    <li class="ui-state-highlight">..on an empty list</li>
+    <li class="ui-state-highlight">Item 3</li>
+    <li class="ui-state-highlight">Item 4</li>
+    <li class="ui-state-highlight">Item 5</li>
+</ul>
+
+<ul id="sortable3" class="droptrue">
+</ul>
+
+<ul id="dragBase">
+    <li class="ui-state-highlight">Item 6</li>
+</ul>
+
+<br style="clear:both">
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<script src="http://www.d3plus.org/js/d3.js"></script>
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+<div id="viz"></div>
+
+<script>
+    d3.csv('data/movie_user_rating/ratingByMovie/0.csv', updatePlot);
+    function updatePlot(error, data) {
+        var newArr = [];
+        for(var i=0;i<data.length && parseInt(data[i].movieID) < 100;i++) {
+            data[i].rating = parseFloat(data[i].rating)
+            data[i].ratingID = i;
+            newArr.push(data[i]);
+        }
+        var visualization = d3plus.viz()
+                .container("#viz")
+                .data(newArr)
+                .type("box")
+                .id("ratingID")
+                .x("movieID")
+                .y("rating")
+//                .aggs({"rating": "mean"})
+//                .time("year")
+//                .ui([{
+//                    "label": "Visualization Type",
+//                    "method": "type",
+//                    "value": ["scatter", "box"]
+//                }])
+                .draw()
+    }
+</script>

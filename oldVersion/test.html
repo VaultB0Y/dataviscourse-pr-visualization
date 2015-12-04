@@ -1,0 +1,101 @@
+<!doctype html>
+<meta charset="utf-8">
+
+
+
+<div id="viz"></div>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <script src="http://www.d3plus.org/js/d3.js"></script>
+    <script src="http://www.d3plus.org/js/d3plus.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/loadData.js"></script>
+    <script src="js/userView.js"></script>
+    <link rel="stylesheet" href="viz.css">
+</head>
+
+<body>
+<script src="script.js" charset="utf-8"></script>
+<h3>CS-6630 project</h3>
+
+<br/>
+<hr/>
+<br/>
+
+<br/>
+
+<div>
+    <h2>Single user</h2>
+    <label for="userSelect0">Select a UserID</label>
+    <select name="User" id="userSelect0" onchange="changeUserSelect0()">
+        <option selected="selected">1</option>
+    </select>
+    <label for="avgNumSelect0">Select y axis</label>
+    <select name="avgNumSelect" id="avgNumSelect0" onchange="changeAvgNumSelect0()">
+        <option selected="selected">record count</option>
+    </select>
+    <svg id="aBar" width="500" height="300">
+
+    </svg>
+
+    <svg id="bBar"width="500" height="300">
+
+    </svg>
+</div>
+
+
+
+<div>
+    <h2>Pie Charts</h2>
+    <svg id="aPie" width="400" height="400">
+        <g transform="translate(0, 200) scale(1, 1)">
+
+        </g>
+    </svg>
+</div>
+
+<div>
+    <h2>TreeMap</h2>
+    <svg id="treeMap" width="600" height="400">
+        <g transform="translate(0, 200) scale(1, 1)">
+
+        </g>
+    </svg>
+</div>
+
+<div>
+    <h2>Line Charts</h2>
+
+    <svg id="aLine" width="700" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<path class="lines" d="M0 100 L20 80 L40 130 L60 90 L80 110 L100 140 L120 60-->
+            <!--L140 40 L160 120 L180 70 L200 50"/>-->
+            <path class="lines"/>
+        </g>
+    </svg>
+
+    <svg id="bLine" width="700" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<path class="lines" d="M0 91.4 L20 81.4 L40 87.4 L60 87.7 L80 92.6 L100 81 L120 61.3-->
+            <!--L140 31 L160 91.3 L180 72.6 L200 47.4"/>-->
+            <path class="lines"/>
+        </g>
+    </svg>
+</div>
+
+<div>
+    <h2>BoxPlot</h2>
+
+    <svg id="boxPlot" width="300" height="400">
+
+    </svg>
+</div>
+
+
+<!--<script>loadData();</script>-->
+</body>
+</html>

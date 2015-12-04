@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <style>
+        .axis text {
+            font: 10px sans-serif;
+        }
+        .axis line,
+        .axis path {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .barChart {
+            fill: steelblue;
+            stroke: darkgray;
+            stroke-width: 1px;
+        }
+
+        /*rect.barChart:hover {*/
+            /*fill: red;*/
+        /*}*/
+
+        .arc path {
+            stroke: #fff;
+        }
+
+        .lines {
+            stroke: steelblue;
+            fill: none
+        }
+
+        .areas {
+            stroke: none;
+            fill: steelblue
+        }
+
+        circle {
+            fill: steelblue;
+        }
+
+        .frame {
+            fill: none;
+            stroke: black;
+            stroke-width: 2px;
+        }
+
+        /* Styles that clean up the layout;
+         * you can ignore these */
+        /*div {*/
+            /*display: inline-block;*/
+            /*border: 1px solid lightgray;*/
+            /*margin: 1em;*/
+        /*}*/
+
+        /*div, span {*/
+            /*padding: 1em;*/
+        /*}*/
+    </style>
+</head>
+
+<body>
+<script src="script.js" charset="utf-8"></script>
+<script src="http://www.d3plus.org/js/d3.js"></script>
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
+<h3>CS-6630 project</h3>
+
+<br/>
+<hr/>
+<br/>
+
+<br/>
+
+<div>
+    <h2>Bar Charts</h2>
+    <svg id="aBar" width="500" height="300">
+        <g transform="translate(0, 250) scale(1, 1)">
+        </g>
+    </svg>
+
+    <svg id="bBar"width="500" height="300">
+        <!-- Paste your HW 1 solution here -->
+        <g transform="translate(0, 250) scale(1, 1)">
+        </g>
+    </svg>
+</div>
+
+
+
+<div>
+    <h2>Pie Charts</h2>
+    <svg id="aPie" width="400" height="400">
+        <g transform="translate(0, 200) scale(1, 1)">
+
+        </g>
+    </svg>
+</div>
+
+<div>
+    <h2>TreeMap</h2>
+    <svg id="treeMap" width="600" height="400">
+        <g transform="translate(0, 200) scale(1, 1)">
+
+        </g>
+    </svg>
+</div>
+
+<div>
+    <h2>Line Charts</h2>
+
+    <svg id="aLine" width="700" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<path class="lines" d="M0 100 L20 80 L40 130 L60 90 L80 110 L100 140 L120 60-->
+        <!--L140 40 L160 120 L180 70 L200 50"/>-->
+            <path class="lines"/>
+        </g>
+    </svg>
+
+    <svg id="bLine" width="700" height="300">
+        <g transform="translate(0, 200) scale(1, 1)">
+            <!--<path class="lines" d="M0 91.4 L20 81.4 L40 87.4 L60 87.7 L80 92.6 L100 81 L120 61.3-->
+        <!--L140 31 L160 91.3 L180 72.6 L200 47.4"/>-->
+            <path class="lines"/>
+        </g>
+    </svg>
+</div>
+
+<div>
+    <h2>BoxPlot</h2>
+
+    <svg id="boxPlot" width="300" height="400">
+
+    </svg>
+</div>
+
+
+<script>loadData();</script>
+</body>
+</html>

@@ -1,143 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
+<meta charset="utf-8">
+
+
+
+<div id="viz"></div>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Project</title>
-    <style>
-        .axis text {
-            font: 10px sans-serif;
-        }
-        .axis line,
-        .axis path {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        }
-
-        .barChart {
-            fill: steelblue;
-            stroke: darkgray;
-            stroke-width: 1px;
-        }
-
-        /*rect.barChart:hover {*/
-            /*fill: red;*/
-        /*}*/
-
-        .arc path {
-            stroke: #fff;
-        }
-
-        .lines {
-            stroke: steelblue;
-            fill: none
-        }
-
-        .areas {
-            stroke: none;
-            fill: steelblue
-        }
-
-        circle {
-            fill: steelblue;
-        }
-
-        .frame {
-            fill: none;
-            stroke: black;
-            stroke-width: 2px;
-        }
-
-        /* Styles that clean up the layout;
-         * you can ignore these */
-        div {
-            display: inline-block;
-            border: 1px solid lightgray;
-            margin: 1em;
-        }
-
-        div, span {
-            padding: 1em;
-        }
-    </style>
+    <link rel="stylesheet" href="css/viz.css">
 </head>
 
 <body>
-<script src="script.js" charset="utf-8"></script>
-<script src="http://www.d3plus.org/js/d3.js"></script>
-<script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+
 <h3>CS-6630 project</h3>
 
 <br/>
 <hr/>
 <br/>
-
 <br/>
 
 <div>
-    <h2>Bar Charts</h2>
-    <svg id="aBar" width="500" height="300">
-        <g transform="translate(0, 250) scale(1, 1)">
-        </g>
-    </svg>
+    <h2>User View</h2>
+    <label for="userSelect0">Select a UserID</label>
+    <select name="User" id="userSelect0" onchange="userViewSelectMenu.changeUser()">
+        <option selected="selected">1</option>
+    </select>
+    <label for="xAxisSelect0">Select x axis</label>
+    <select name="xAxisSelect" id="xAxisSelect0" onchange="userViewSelectMenu.changeX()">
+        <option selected="selected">movieID</option>
+        <option>genre</option>
+        <option>year</option>
+    </select>
+    <label for="yAxisSelect0">Select y axis</label>
+    <select name="avgNumSelect" id="yAxisSelect0" onchange="userViewSelectMenu.changeY()">
+        <option selected="selected">rating</option>
+        <option>recordNum</option>
+    </select>
+    <label for="chartType0">Select Chart Type</label>
+    <select name="chartTypeSelect" id="chartType0" onchange="userViewSelectMenu.changeChart()">
+        <option class="barChart" selected="selected">Bar Chart</option>
+        <option class="boxPlot">Box Plot</option>
+        <option class="treeMap">Tree Map</option>
+        <option class="pieChart">Pie Chart</option>
+        <option class="lineChart">Line Chart</option>
+    </select>
 
-    <svg id="bBar"width="500" height="300">
-        <!-- Paste your HW 1 solution here -->
-        <g transform="translate(0, 250) scale(1, 1)">
-        </g>
+    <svg id="userView" width="800" height="500">
     </svg>
 </div>
 
 
 
 <div>
-    <h2>Pie Charts</h2>
-    <svg id="aPie" width="400" height="400">
-        <g transform="translate(0, 200) scale(1, 1)">
+    <h2>Movie View</h2>
+    <label for="movieSelect1">Select a MovieID</label>
+    <select name="Movie" id="movieSelect1" onchange="movieViewSelectMenu.changeMovie()">
+        <option selected="selected">1</option>
+    </select>
+    <label for="xAxisSelect1">Select x axis</label>
+    <select name="xAxisSelect" id="xAxisSelect1" onchange="movieViewSelectMenu.changeX()">
+        <option>sex</option>
+        <option selected="selected">state</option>
+        <option>age</option>
+    </select>
+    <label for="yAxisSelect1">Select y axis</label>
+    <select name="avgNumSelect" id="yAxisSelect1" onchange="movieViewSelectMenu.changeY()">
+        <option>rating</option>
+        <option selected="selected">recordNum</option>
+    </select>
+    <label for="chartType1">Select Chart Type</label>
+    <select name="chartTypeSelect" id="chartType1" onchange="movieViewSelectMenu.changeChart()">
+        <option class="barChart">Bar Chart</option>
+        <option class="boxPlot">Box Plot</option>
+        <option class="treeMap" selected="selected">Tree Map</option>
+        <option class="pieChart">Pie Chart</option>
+        <option class="geoMap">Geo Map</option>
+        <option class="lineChart">Line Chart</option>
+    </select>
 
-        </g>
-    </svg>
-</div>
-
-<div>
-    <h2>TreeMap</h2>
-    <svg id="treeMap" width="600" height="400">
-        <g transform="translate(0, 200) scale(1, 1)">
-
-        </g>
-    </svg>
-</div>
-
-<div>
-    <h2>Line Charts</h2>
-
-    <svg id="aLine" width="800" height="300">
-        <g transform="translate(0, 200) scale(1, 1)">
-            <!--<path class="lines" d="M0 100 L20 80 L40 130 L60 90 L80 110 L100 140 L120 60-->
-        <!--L140 40 L160 120 L180 70 L200 50"/>-->
-            <path class="lines"/>
-        </g>
-    </svg>
-
-    <svg id="bLine" width="800" height="300">
-        <g transform="translate(0, 200) scale(1, 1)">
-            <!--<path class="lines" d="M0 91.4 L20 81.4 L40 87.4 L60 87.7 L80 92.6 L100 81 L120 61.3-->
-        <!--L140 31 L160 91.3 L180 72.6 L200 47.4"/>-->
-            <path class="lines"/>
-        </g>
-    </svg>
-</div>
-
-<div>
-    <h2>BoxPlot</h2>
-
-    <svg id="boxPlot" width="800" height="400">
-        <g transform="translate(0, 300) scale(1, 1)">
-        </g>
+    <svg id="movieView" width="800" height="500">
     </svg>
 </div>
 
 
-<script>loadData();</script>
+
+
+
+<script src="http://www.d3plus.org/js/d3.js"></script>
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://www.d3plus.org/js/topojson.js"></script>
+<script src="js/typeConversion.js"></script>>
+<script src="js/userView.js"></script>
+<script src="js/userSelectMenu.js"></script>
+<script src="js/movieView.js"></script>
+<script src="js/movieSelectMenu.js"></script>
+<script src="js/loadData.js"></script>
 </body>
+
 </html>
+
