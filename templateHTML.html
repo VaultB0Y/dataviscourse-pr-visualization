@@ -1,0 +1,138 @@
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>D3plus</title>
+    <meta name="description" content="Data visualization made easy. A javascript library that extends the popular D3.js to enable fast and beautiful visualizations."/>
+
+    <link rel="shortcut icon" type="image/png" href="/assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="256x256" href="/assets/img/touchicon.png">
+
+    <!-- Facebook Properties -->
+    <meta property="og:image" content="http://d3plus.org/assets/img/facebook.jpg" />
+
+    <!-- Custom CSS -->
+    <link href="/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/css/syntax.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+    <!-- Font-Awesome -->
+    <link href="/assets/font-awesome-4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <script src="/js/d3.min.js"></script>
+    <script src="/js/d3plus.min.js"></script>
+
+</head>
+<body>
+
+<header>
+    <nav>
+        <h1><a href="/">D3plus</a></h1>
+
+
+        <a class="active" href="/examples/">Examples</a>
+
+        <a  href="/blog/">Blog</a>
+
+        <a  href="https://github.com/alexandersimoes/d3plus/wiki">Documentation</a>
+
+        <a  href="/d3plus.zip">Download</a>
+
+        <a  href="https://github.com/alexandersimoes/d3plus">Source</a>
+
+    </nav>
+</header>
+
+
+<div id="content">
+
+
+
+
+
+
+
+
+    <div class="page-header" style="position: relative;">
+        <h1 class="post-title">a5fe67715c5245d4cfad</h1>
+        <a class="button right" href="http://bl.ocks.org/davelandry/raw/a5fe67715c5245d4cfad/" target="_blank">
+            View Standalone <i class='fa fa-angle-right'></i>
+        </a>
+    </div>
+
+    <section>
+        <p class="example"></p>
+        <iframe src="http://bl.ocks.org/davelandry/raw/a5fe67715c5245d4cfad/" width="990" height="640"></iframe>
+        <script src="https://gist.github.com/davelandry/a5fe67715c5245d4cfad.js?file=index.html"></script>
+    </section>
+
+    <script src="/js/d3.js"></script>
+    <script src="/js/showdown.js"></script>
+
+    <script>
+
+        var id = "a5fe67715c5245d4cfad"
+
+        d3.json("https://api.github.com/gists/"+id+"?client_id=85fd2434dd8ebd42c68d&client_secret=d3c1a4d9fb8752c9d6e9a4c8726fd9e6cfbd0067",function(error,gist){
+
+            if (!error || gist.length > 0) {
+
+                var section = d3.select("section")
+
+                var title = gist.description || id
+
+                document.title = title +" with D3plus"
+
+                d3.select("h1.post-title").text(title)
+
+                var readme = gist.files["README.md"]
+                if (readme) {
+
+                    var md = readme.content.replace(/\n\nFeatured on \[D3plus\.org\]\(http\:\/\/www\.d3plus\.org\/\)/g,"")
+                    md = md.replace(/\nFeatured on \[D3plus\.org\]\(http\:\/\/www\.d3plus\.org\/\)/g,"")
+                    md = md.replace(/Featured on \[D3plus\.org\]\(http\:\/\/www\.d3plus\.org\/\)/g,"")
+
+                    var converter = new Showdown.converter(),
+                            html = converter.makeHtml(md)
+
+                    section.select("p").html(html)
+
+                }
+
+            }
+
+        })
+
+    </script>
+
+</div>
+
+<footer>
+    <h4>Sites that use D3plus:</h4>
+    <a href="http://www.dataviva.info" target="_blank">
+        <img src="/assets/img/dataviva.png" width="150px">
+    </a>
+    <a href="http://atlas.media.mit.edu" target="_blank">
+        <img src="/assets/img/oec.png" width="150px">
+    </a>
+    <a href="http://pantheon.media.mit.edu" target="_blank">
+        <img src="/assets/img/pantheon.png" width="150px">
+    </a>
+</footer>
+
+<script type="text/javascript">
+
+    // Google Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-46067436-1', 'd3plus.org');
+    ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
