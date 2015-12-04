@@ -32,7 +32,7 @@
 
 \section{Overview and Motivation}
 
-The objective of our project is to perform an interactive visualization analysis on the relationship between different kinds of movies and people who give ratings on the movies. Our project deals with a really interesting problem. Note that thousands of movies are released over the world each year. We can easily find the corresponding information in some online web sites (eg. IMDB\footnote{\url{http://www.imdb.com/}}). However, in fact, we are only interested in a small part of them. We have no time to scan all the introductions to these movies. Thus, we hope we can perform an interactive visualization analysis and tell people what movies they may like to see based on people's attribute information. These attribute information regarding different people can also be added into existing recommendation systems and improve the accuracy of recommendation.
+The objective of our project is to perform an interactive visualization analysis on the relationship between different kinds of movies and people who give ratings on the movies. Our project deals with a really interesting problem. Note that thousands of movies are released over the world each year. We can easily find the corresponding information in some online web sites (eg. IMDB\footnote{\url{http://www.imdb.com/}}). However, in fact, we are only interested in a small part of them. We have no time to scan all the introductions to these movies. Thus, we hope we can perform an interactive visualization analysis and tell people what movies they may like to see based on people's attribute information. The attribute information regarding different people can also be added into existing recommendation systems and improve the accuracy of recommendation.
 
 \section{Related Work}
 
@@ -60,21 +60,44 @@ What we would like to learn is if any trends or patterns exist in our data set. 
 
 How do these questions evolve over the course of the project?
 
-TBD
+\begin{itemize}
+\item In our proposal, we mainly focus on the influence of the attribute "Age". As the project goes, we realize that "Location" and "Gender" can also have an influence on people's choices. For example, males usually give higher ratings for action movies, crime movies and thrillers than females, while females usually give higher ratings for children's movies, animations and comedies.
+\end{itemize}
 
 What new questions do you consider in the course of your analysis?
-
-TBD
+\begin{itemize}
+\item As the project goes, we pay more attention to trying all kinds of data analyses. For example, we may answer the questions "What is the average rating for each genre of movies?", "Are old movies more highly-rated than new movies?", and "What kinds of movies do people in California like to see?", "How about the case in the whole America?". These interesting questions have not been mentioned in our proposal. However, over the course of the project, we discuss with each other for several times and gradually make our visualization work solid.
+\end{itemize}
 
 \section{Data}
 
 We use MovieLens 1M Data Set\footnote{\url{http://datahub.io/dataset/movielens}}. This data set contains 1,000,209 ratings applied to 3,952 movies by 6,040 users of the online movie recommender service MovieLens. All ratings are contained in the file ``ratings.dat'' and are in the following format: UserID::MovieID::Rating::Timestamp. Ratings are made on a 5-star scale. Each user has at least 20 ratings. User information is in the file ``users.dat'' and is in the following format: UserID::Gender::Age::Occupation::Zip-code. Movie information is in the file ``movies.dat'' and is in the following format: MovieID::Title::Genres. By performing visualization analysis on the data set, we can answer some interesting questions, such as ``what kinds of movies are liked by people with some specific attributes''.
 
-We pre-process the data set by clustering the data according to the different kinds of movies and different attributes of people. After generating such aggregation information, we use the transformed data set to perform interactive visualization analysis on it.
+We pre-process the data set by clustering the data according to different kinds of movies and different attributes of people. After generating such aggregation information, we perform interactive visualization analysis on the transformed data set.
 
 \section{Exploratory Data Analysis}
 
-TBD
+What visualizations do you use to initially look at your data?
+
+\begin{itemize}
+\item In our milestone, we use static bar charts, pie charts, tree maps, line charts and box plots to look at our data.
+\end{itemize}
+
+What insights do you gain?
+
+\begin{itemize}
+\item Different kinds of movies gain different numbers of ratings. Although comedies, dramas and action movies do not have higher average ratings, they gain much more ratings from all kinds of people.
+\item Few people give ratings for documentaries and film noirs. However, these two kinds of movies gain the top two average ratings. It seems that only a few people pay attention to them and give them high ratings. For the majority of people, they even do not realize the existence of these movies.
+\item Some information (eg. geo-location information) cannot be represented in such a simple way. Also, only using static visualization design has difficulty in showing people more detailed information in the data set.
+\end{itemize}
+
+How do these insights inform your design?
+
+\begin{itemize}
+\item There are some really interesting patterns that we need to find in our data set.
+\item We may need to introduce a map to represent the geo-location information in the data set.
+\item We may need to add more interactive data visualization designs in our project.
+\end{itemize}
 
 \section{Design Evolution}
 
@@ -211,31 +234,26 @@ we have selected.
 \label{fig:fig12}
 \end{figure}
 
-\subsubsection{Project Peer Feedback}
-
-\begin{itemize}
-\item[1)] If the user does not choose some suitable filter options, presenting all the things in the web page may need a considerable cost, since we have a relatively large data set.
-\item[2)] They suggest that we may need to add more interactive visualization designs.
-\item[3)] Since we have Zip Code information of each person, we can find the corresponding geo-location information. Thus they suggest that we can try visualizing the ratings related with the corresponding locations in the map.
-\end{itemize}
-
 \subsection{Our Design in Final Submission}
 
-TBD
+What are the different visualizations you considered? Justify the design decisions you made using the perceptual and design principles you learned in the course. Did you deviate from your proposal?
+
+\begin{itemize}
+\item
+\end{itemize}
+
 
 \section{Implementation}
 
-\subsection{Our Implementation in Milestone}
+\subsection{Data Preprocessing}
 
-\subsubsection{Data Preprocessing}
+We simply transformed the original data into the format that can be easily processed. Then we imported the transformed data into MySQL. We used three tables to present the transformed data. The SQL statement ``Create table if not exists User( UserID int, Gender int, Age int, Occupation int, ZipCode varchar(15) )'' can create User table. The SQL statement ``Create table if not exists Movie( MovieID int, Title varchar(100), Year int, Genres varchar(50) )'' can create Movie table. The SQL statement ``Create table if not exists Rating( UserID int, MovieID int, Rating int, Timestamp varchar(15) )'' can create Rating table. After inserting the tuples into the tables in the database, we can easily gain some statistics by performing the corresponding aggregate queries.
 
-We simply transformed the original data into the format that can be easily processed. Then we imported the transformed data into MySQL. We used three tables to present the transformed data. The SQL statement ``Create table if not exists Movie( MovieID int, Title varchar(100), Genres varchar(50) )'' can create Movie table. The SQL statement ``Create table if not exists User( UserID int, Gender int, Age int, Occupation int, ZipCode varchar(15) )'' can create User table. The SQL statement ``Create table if not exists Movie( MovieID int, Title varchar(100), Genres varchar(50) )'' can create Movie table. The SQL statement ``Create table if not exists Rating( UserID int, MovieID int, Rating int, Timestamp varchar(15) )'' can create Rating table. After inserting the tuples into the tables in the database, we can easily gain some statistics by performing the corresponding aggregate queries.
+We perform our offline data analysis by using both of SQL queries and Java programming. The advantage of performing SQL queries is that we can use only one statement to generate the file that contains the aggregation information we need. For example, if we want to find the average rating for all the movies in a specific year, we can just perform such a SQL statement ``select m.year as Year, avg(r.rating) as AverageRating, count(*) as RecordNum from (select distinct movieid, year from movie) as m, (select movieid, rating from rating) as r where m.movieid = r.movieid group by m.Year''. If we want to find the average rating for all the movies sharing a specific genre, we can just perform such a SQL statement ``select m.Genres as Genre, avg(r.rating) as AverageRating, count(*) as RecordNum from (select movieid, genres from movie) as m, (select movieid, rating from rating) as r where m.movieid = r.movieid group by m.Genres''. However, since there are only three tables in the database, the disadvantage of performing SQL queries is that it really needs some time to generate the final results by joining multiple tables. In fact, we have ever tried to perform an online interactive data analysis during visualization by connecting our JavaScript code to MySQL server. However, since performing join queries on such three tables really needs much time, we gave up the idea.
 
-\subsubsection{Basic Visualization Design}
+We can also use Java programming to perform offline data analysis. It can efficiently avoid the time cost of performing SQL queries. In fact, here we use Java programming to answer all kinds of complicated questions that we have proposed before and generate the related files.
 
-Build the basic visual structure/layout using JavaScript.
-
-\subsection{Our Implementation in Final Submission}
+\subsection{Visualization Implementation}
 
 TBD
 
@@ -243,15 +261,33 @@ TBD
 
 What do we learn about the data by using our visualizations?
 
-TBD
+We find some interesting patterns inside our dataset.
+\begin{itemize}
+\item Males usually give higher ratings for action movies, crime movies and thrillers than females, while females usually give higher ratings for children¡¯s movies, animations and comedies.
+\item The number of ratings for one genre of movies has no relation with the corresponding average rating. Although comedies, dramas and action movies do not have higher average ratings, they gain much more ratings from all kinds of people. Few people give ratings for documentaries and film noirs. However, these two kinds of movies gain the top two average ratings. It seems that only a few people pay attention to them and give them high ratings. For the majority of people, they even do not realize the existence of these movies.
+\item Old movies usually gain higher ratings than new movies. The reason may be that old movies rated by people are usually classic movies. It is not surprising for these classic movies to gain high ratings.
+\item People in different locations (i.e. states) like to see different kinds of movies. For example, people in Utah give higher ratings for mystery movies than people in other states. However, people in Utah give lower ratings for romance movies and horror movies than people in other states.
+\end{itemize}
 
 How do we answer our questions?
 
-TBD
+\begin{itemize}
+\item The first question is how to tell people which movie they may like to see. In our visualization, users can use filters and choose people's attributes that they have and see the output.
+
+\item The second question is for people in different ages how to check what their favorite movies are and the average rating of each
+certain movie. Based on our visualization, we can provide the services for users to search the information they want to check about the movies. The information can be related with different ages.
+
+\item The third question is how to help the movie makers to investigate who like their movies best. Our visualization will also benefit the movie makers and help them to make movies that more people like to watch. Since we have done some data analysis and generated a lot of aggregation information, movie makers can easily check the information and find what they need. For example, they can find how age information, location information and gender information have an influence on people's ratings.
+\end{itemize}
 
 How well does our visualization work, and how could we further improve it?
 
-TBD
+\begin{itemize}
+\item In our opinion, our visualization can really satisfy user needs. We use all kinds of charts to represent static visualization models. We use filters to represent interactive visualization models. We also use a map to represent geo-location information.
+\item We can combine the current data analysis with recommending new movies for users. By using the rating data, we can perform the collaborative filtering algorithm and recommend interesting movies for users. If there is more time left for us, we can represent the recommendation information in our visualization design.
+\item We can also try connecting our JavaScript code to MySQL server. Of course, the major issue that we should deal with is how to design the structure of each table, build the indices and use the cache strategy.
+\item We can further beautify our visualization, such as adding some background images and using some novel JavaScript libraries.
+\end{itemize}
 
 \pagebreak
 \restoregeometry
