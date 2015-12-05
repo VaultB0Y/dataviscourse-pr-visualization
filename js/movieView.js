@@ -181,7 +181,7 @@ var movieView = {
                 "value": yAxis
             })
             .aggs({"rating": "mean"})
-            .tooltip("rating", "recordNum")
+            .tooltip(["rating", "recordNum"])
             .draw()
     }
 }

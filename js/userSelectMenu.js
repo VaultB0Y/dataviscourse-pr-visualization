@@ -69,21 +69,13 @@ var userViewSelectMenu = {
             $("#chartType0 .TreeMap").show();
             $("#chartType0 .pieChart").show();
         }
-        if(chartType == 'Bar Chart'){
+        if(chartType == 'Bar Chart' && xAxis != "year"){
             $("#sortSelect0").show();
             $("#label_sortSelect0").show();
         }
         else{
             $("#sortSelect0").hide();
             $("#label_sortSelect0").hide();
-        }
-        if(xAxis == "year"){
-            $("#sortSelect0").hide();
-            $("#label_sortSelect0").hide();
-        }
-        else{
-            $("#sortSelect0").show();
-            $("#label_sortSelect0").show();
         }
     }
 }
