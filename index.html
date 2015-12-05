@@ -38,20 +38,25 @@
         <option>recordNum</option>
       </select>
       <label for="chartType0">Select Chart Type</label>
-      <select name="chartTypeSelect" id="chartType0" onchange="userViewSelectMenu.changeChart()">
+      <select name="chartTypeSelect" id="chartType0" onchange="userViewSelectMenu.changeOrder()">
         <option class="barChart" selected="selected">Bar Chart</option>
         <option class="boxPlot">Box Plot</option>
         <option class="treeMap">Tree Map</option>
         <option class="pieChart">Pie Chart</option>
-        <option class="lineChart">Line Chart</option>
+        <option class="lineChart">Point Chart</option>
+      </select>
+      <label for="sortSelect0" id="label_sortSelect0">Select Order</label>
+      <select name="sortSelect" id="sortSelect0" onchange="userViewSelectMenu.changeOrder()">
+        <option class="origin" selected="selected">Original Order</option>
+        <option class="asc">Ascending Order</option>
+        <option class="desc">Descending Order</option>
       </select>
       <br/>
       <br/>
-      <svg id="userView" width="800" height="500">
+      <svg id="userView" width="1000" height="400">
       </svg>
     </div>
 
-      <br/>
       <br/>
       <br/>
 
@@ -79,11 +84,17 @@
         <option class="treeMap" selected="selected">Tree Map</option>
         <option class="pieChart">Pie Chart</option>
         <option class="geoMap">Geo Map</option>
-        <option class="lineChart">Line Chart</option>
+        <option class="lineChart">Point Chart</option>
+      </select>
+      <label for="sortSelect1" id="label_sortSelect1">Select Order</label>
+      <select name="sortSelect" id="sortSelect1" onchange="movieViewSelectMenu.changeOrder()">
+        <option class="origin" selected="selected">Original Order</option>
+        <option class="asc">Ascending Order</option>
+        <option class="desc">Descending Order</option>
       </select>
       <br/>
       <br/>
-      <svg id="movieView" width="800" height="500">
+      <svg id="movieView" width="1000" height="400">
       </svg>
     </div>
 

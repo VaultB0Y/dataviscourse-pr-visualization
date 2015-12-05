@@ -63,7 +63,7 @@ var movieView = {
         else if(chartType == "Pie Chart"){
             this.updatePieChart();
         }
-        else if(chartType == "Line Chart"){
+        else if(chartType == "Point Chart"){
             this.updateLineChart();
         }
         else if(chartType == "Geo Map"){
@@ -73,6 +73,21 @@ var movieView = {
     updateBarChart : function() {
         var xAxis = document.getElementById('xAxisSelect1').value;
         var yAxis = document.getElementById('yAxisSelect1').value;
+        var sort = document.getElementById('sortSelect1').value;
+        var sortType = 0;
+        if(sort == 'Descending Order'){
+            sortType = 'desc';
+        }
+        else{
+            sortType = 'asc';
+        }
+        var sortValue = false;
+        if (sort != 'Original Order'){
+            sortValue = yAxis;
+        }
+        else{
+            sortValue = xAxis;
+        }
         var visualization = d3plus.viz()
             .container("#movieView")
             .data(this.selectedData)
@@ -81,6 +96,11 @@ var movieView = {
             .x(xAxis)
             .y(yAxis)
             .aggs({"rating": "mean"})
+            .order({
+                sort : sortType,
+                value : sortValue
+            })
+            //.order({sort:"asc", value:xAxis})
             .tooltip(["title", "year", "recordNum", "rating"])
             .draw()
     },
@@ -110,6 +130,7 @@ var movieView = {
             .type("tree_map")
             .id(xAxis)
             .size("recordNum")
+            .aggs({"rating": "mean"})
             .tooltip("rating", "recordNum")
             .labels({"align": "left", "valign": "top"})
             .draw()
@@ -124,6 +145,7 @@ var movieView = {
             .type("pie")
             .id(xAxis)
             .size("recordNum")
+            .aggs({"rating": "mean"})
             .tooltip("rating", "recordNum")
             .draw()
     },

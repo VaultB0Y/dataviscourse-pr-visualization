@@ -32,23 +32,19 @@ var movieViewSelectMenu = {
     },
 
     changeChart : function(){
+        this.resetChart();
         movieView.updateChart();
-    }
-    ,
+    },
+
+    changeOrder : function(){
+        this.resetChart();
+        movieView.updateChart();
+    },
+
     resetChart :function(){
         var xAxis = document.getElementById('xAxisSelect1').value;
         var yAxis = document.getElementById('yAxisSelect1').value;
-        //if(xAxis == "genre"){
-        //    $("#chartType0 .boxPlot").show();
-        //    $("#chartType0 .treeMap").show();
-        //    $("#chartType0 .pieChart").show();
-        //}
-        //else{
-        //    //var par = document.getElementById('chartType0');
-        //    $("#chartType0 .boxPlot").hide();
-        //    $("#chartType0 .treeMap").hide();
-        //    $("#chartType0 .pieChart").hide();
-        //}
+        var chartType = document.getElementById('chartType1').value;
 
         if(yAxis == 'rating'){
             $("#chartType1 .boxPlot").show();
@@ -59,6 +55,15 @@ var movieViewSelectMenu = {
             $("#chartType1 .boxPlot").hide();
             $("#chartType1 .treeMap").show();
             $("#chartType1 .pieChart").show();
+        }
+
+        if(chartType == 'Bar Chart'){
+            $("#sortSelect1").show();
+            $("#label_sortSelect1").show();
+        }
+        else{
+            $("#sortSelect1").hide();
+            $("#label_sortSelect1").hide();
         }
     }
 }

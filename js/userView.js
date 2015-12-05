@@ -89,13 +89,28 @@ var userView = {
         else if(chartType == "Pie Chart"){
             this.updatePieChart();
         }
-        else if(chartType == "Line Chart"){
+        else if(chartType == "Point Chart"){
             this.updateLineChart();
         }
     },
     updateBarChart : function() {
         var xAxis = document.getElementById('xAxisSelect0').value;
         var yAxis = document.getElementById('yAxisSelect0').value;
+        var sort = document.getElementById('sortSelect0').value;
+        var sortType = 0;
+        if(sort == 'Descending Order'){
+            sortType = 'desc';
+        }
+        else{
+            sortType = 'asc';
+        }
+        var sortValue = false;
+        if (sort != 'Original Order'){
+            sortValue = yAxis;
+        }
+        else{
+            sortValue = xAxis;
+        }
         var visualization = d3plus.viz()
             .container("#userView")
             .data(this.selectedData)
@@ -106,6 +121,10 @@ var userView = {
             .aggs({"rating": "mean"})
             .tooltip(["title", "year", "recordNum", "rating"])
             .time("year")
+            .order({
+                sort : sortType,
+                value : sortValue
+            })
             .mouse({
                 click : this.updateMovieViewByClick
             })
@@ -158,6 +177,7 @@ var userView = {
             .id(xAxis)
             .size("recordNum")
             .time("year")
+            .tooltip(["title", "year", "recordNum", "rating"])
             .mouse({
                 click : this.updateMovieViewByClick
             })

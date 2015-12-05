@@ -39,13 +39,15 @@ var userViewSelectMenu = {
         }
     },
 
-    changeChart : function(){
+    changeOrder : function(){
+        this.resetChart();
         userView.updateChart();
     }
     ,
     resetChart :function(){
         var xAxis = document.getElementById('xAxisSelect0').value;
         var yAxis = document.getElementById('yAxisSelect0').value;
+        var chartType = document.getElementById('chartType0').value;
         if(xAxis == "genre"){
             $("#chartType0 .boxPlot").show();
             $("#chartType0 .treeMap").show();
@@ -67,6 +69,14 @@ var userViewSelectMenu = {
             $("#chartType0 .boxPlot").hide();
             $("#chartType0 .TreeMap").show();
             $("#chartType0 .pieChart").show();
+        }
+        if(chartType == 'Bar Chart'){
+            $("#sortSelect0").show();
+            $("#label_sortSelect0").show();
+        }
+        else{
+            $("#sortSelect0").hide();
+            $("#label_sortSelect0").hide();
         }
     }
 }
