@@ -59,7 +59,6 @@ var userViewSelectMenu = {
             $("#chartType0 .treeMap").hide();
             $("#chartType0 .pieChart").hide();
         }
-
         if(yAxis == 'rating'){
             $("#chartType0 .boxPlot").show();
             $("#chartType0 .treeMap").hide();
@@ -77,6 +76,14 @@ var userViewSelectMenu = {
         else{
             $("#sortSelect0").hide();
             $("#label_sortSelect0").hide();
+        }
+        if(xAxis == "year"){
+            $("#sortSelect0").hide();
+            $("#label_sortSelect0").hide();
+        }
+        else{
+            $("#sortSelect0").show();
+            $("#label_sortSelect0").show();
         }
     }
 }
