@@ -236,11 +236,99 @@ we have selected.
 
 \subsection{Our Design in Final Submission}
 
-What are the different visualizations you considered? Justify the design decisions you made using the perceptual and design principles you learned in the course. Did you deviate from your proposal?
+\subsubsection{Preview}
 
-\begin{itemize}
-\item
-\end{itemize}
+In our final design, we have tried some BI tools such as tableau and qlikview. Then we have some good ideas. We decide to build our visualization project into a concise, elegant and flexible tool. So we focus more on the interaction, and try not to display too many information in a single webpage. What information to be display is totally up to the user.
+
+\subsubsection{Design}
+
+The user could select any valid attribute for $x$ axis, $y$ axis and chart type. We have two views in our final design, one for user, and one for movie. In the user view, you can select a specific user, and his ratings of different movies will display. You can group these information in any attribute, and you can select number of records or average rating as $y$ axis. In the movie view, you can select a specific movie, and all users who have rated this movie will display. You can group these users into different attributes, such as age, state or sex. For details, please see Figure \ref{fig:fin_1}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_1.png}
+}
+\caption{Design}
+\label{fig:fin_1}
+\end{figure}
+
+\subsubsection{Validation of Attributes}
+
+So first of all, we need to validate what attributes are valid for $x$ axis and $y$ axis. The categorical attributes are for $x$ axis, and numerical attributes are for $y$ axis. So in the user view, the categorical attributes are movieID, genre and released year. In the movie view, the categorical attributes could be age, state and sex. Both user view and movie share the same y-axis: number of records and average rating.
+
+
+\subsubsection{Color}
+
+We should color the categorical chart into different colors based on the selected id or selected group. For the numerical attributes, we should use the same hue and scale by saturation and lightness.
+
+
+\subsubsection{Chart Type}
+
+1. Bar Chart
+
+Bar chart is the most flexible chart type, and it can be useful in any circumstance. We should implement it. And we need to provide sorting function for bar chart.
+
+
+2. Tree Map and Pie Chart
+
+Tree Map and Pie Chart are good charts to display proportion of different elements. So we should also include them both. However, the tree map and pie chart are only valid when y axis is set to number of records. The proportion is pointless when y axis is set to average rating.
+
+
+3. Box plot
+
+Box plot is also a very helpful tool to observe the distribution of rating. In the user view, when the x-axis is movieID, the box plot is the same as point chart because the record number is 1 for each group. In the case when x-axis is genre or year, the recordNum for different group may be larger than 1, so we can see the top tukey, first quartile, median, third quartile and bottom tukey. The box plot is pointless when y axis is set to recordNum. For details, please see Figure \ref{fig:fin_2}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_2.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_2}
+\end{figure}
+
+
+4. Geography Map
+
+Since we have postal code information in the user information, we can display the location distribution information as geo map in the movie view. You can see different the recordNum or average rating of different states in US. We use color to scale the numberical attributes in geo map.
+
+
+5. Network Chart
+
+Network Chart is a powerful tool. We have taken this type into consideration, but we at last abandon this chart, because there are over 6000 users and 3000 movies and 1 million ratings in the dataset, it's almost impossible to display all the information in a network chart...
+
+
+6. Point Chart
+
+We also include a point chart in our design. It's also very flexible.
+
+\subsubsection{Selection of attributes and charts}
+
+We use dropdown menu list to select attributes, and we also need to validate the relationship between attributes and charts. For example, if you select recordNum as $y$ axis, you could not select box plot. If you select rating as $y$ axis, you could not select pie chart and tree map.
+
+{\bf Interaction}
+
+1. Drop down menu
+
+You can select any valid attributes for $x$ axis and $y$ axis and bar chart.
+
+2. Tooltip
+
+With the help of tooltip, we can see more information we want when we move mouse over the element in the chart.
+
+
+3. Timeline
+
+In the user view, we can user timeline to filter out the movie released in a time range. If we can display the evolution of information over time, that'll be better.
+
+
+4. Zoom in and zoom out
+
+In the movie view, when you select ``state'' as $x$ axis and ``geo map'' as chart type, it will show a us geo map. We can zoom in and zoom out for more details.
+
+
+5. Sort
+
+When chosen bar chart, you can sort the elements in the chart.
 
 
 \section{Implementation}
@@ -255,7 +343,98 @@ We can also use Java programming to perform offline data analysis. It can effici
 
 \subsection{Visualization Implementation}
 
-TBD
+\subsubsection{Bar Chart}
+
+As we can see, we select movieID as x Axis, we display rating information in barchart, and we can view the movie title, year in the tool tip. We can sort the bar in original, ascending or descending order. We can use timeline widget to filter out the movies. For details, please see Figure \ref{fig:fin_3} and Figure \ref{fig:fin_4}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_3.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_3}
+\end{figure}
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_4.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_4}
+\end{figure}
+
+\subsubsection{Box Plot}
+
+When selected rating as y Axis, we can display the information by box plot. For details, please see Figure \ref{fig:fin_5}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_5.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_5}
+\end{figure}
+
+\subsubsection{Point Chart}
+
+The point chart is shown below. We have also implemented a strong feature: when you move mouse over a point, it can map the point to the left axis. Also tooltips included. For details, please see Figure \ref{fig:fin_6}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_6.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_6}
+\end{figure}
+
+
+\subsubsection{Tree Map and Pie Chart}
+
+When selected recordNum as y Axis, we can use tree map and pie chart. From the below figure we can see that userID 19 watches Action movie the most. For details, please see Figure \ref{fig:fin_7} and Figure \ref{fig:fin_8}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_7.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_7}
+\end{figure}
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_8.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_8}
+\end{figure}
+
+
+\subsubsection{Geography Map}
+
+We have also implemented a geo map in movie view. For movieID 1, we can see that CA has most user ratings. And ND has the highest average, but the recordNum is only 4. For details, please see Figure \ref{fig:fin_9} and Figure \ref{fig:fin_10}.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_9.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_9}
+\end{figure}
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{fin_10.png}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fin_10}
+\end{figure}
+
+\subsubsection{Other Interesting Features}
+
+1. We have implemented a widget to show the evolution over time. If you click the small button on the left of the timeline, the range will move one step forward every second.
+
+
+2. If you click an element in the chart of user view, and the element is corresponding to only one movie, then the movie view will also update based on that selected movie.
 
 \section{Evaluation}
 
