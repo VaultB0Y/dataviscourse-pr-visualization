@@ -40,6 +40,14 @@ Existing works regarding recommendation systems inspire us to finish such a proj
 
 However, all these works focus on how to recommend products for users accurately. These recommendation algorithms are usually performed based on some complicated mathematical deductions. However, it seems difficult for such algorithms to explain how they can generate reasonable results \emph{in an intuitive way}. Therefore, we need to utilize the visualization tools. We perform an interactive visualization analysis and tell people what movies they may like to see based on people¡¯s attribute information.
 
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{12.pdf}
+}
+\caption{Dependencies of users and movies}
+\label{fig:fig12}
+\end{figure}
+
 The visualization in this web site\footnote{\url{http://benfry.com/isometricblocks/}} inspires us to design Figure \ref{fig:fig12}. Figure \ref{fig:fig12} can easily reveal the dependencies of users with different attributes and different kinds of movies.
 
 \section{Questions}
@@ -74,6 +82,22 @@ What new questions do you consider in the course of your analysis?
 We use MovieLens 1M Data Set\footnote{\url{http://datahub.io/dataset/movielens}}. This data set contains 1,000,209 ratings applied to 3,952 movies by 6,040 users of the online movie recommender service MovieLens. All ratings are contained in the file ``ratings.dat'' and are in the following format: UserID::MovieID::Rating::Timestamp. Ratings are made on a 5-star scale. Each user has at least 20 ratings. User information is in the file ``users.dat'' and is in the following format: UserID::Gender::Age::Occupation::Zip-code. Movie information is in the file ``movies.dat'' and is in the following format: MovieID::Title::Genres. By performing visualization analysis on the data set, we can answer some interesting questions, such as ``what kinds of movies are liked by people with some specific attributes''.
 
 We pre-process the data set by clustering the data according to different kinds of movies and different attributes of people. After generating such aggregation information, we perform interactive visualization analysis on the transformed data set.
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{1.pdf}
+}
+\caption{Search for user and filter the movie information}
+\label{fig:fig1}
+\end{figure}
+
+\begin{figure}[h]
+\centering{
+\includegraphics[width=.7\linewidth]{2.pdf}
+}
+\caption{Histogram of ratings grouped by genre}
+\label{fig:fig2}
+\end{figure}
 
 \section{Exploratory Data Analysis}
 
@@ -113,47 +137,6 @@ In our design, we divide the whole framework into five parts:
 \item[5)] Find the dependencies of users with different attributes and different kinds of movies.
 \end{itemize}
 
-\subsubsection{Part 1 Design}
-We can search the rating information given a specific user. Also we could filter out some types
-of movies we do not need, such as released year and genres (as shown in Figure \ref{fig:fig1}). After that, we can present the
-information grouped by genre, or just a scatter plot along the year x-axis. (see Figure \ref{fig:fig2} and \ref{fig:fig3}). Also
-we can rank the movies as shown in Figure \ref{fig:fig11}.
-
-\subsubsection{Part 2 Design}
-We can search the rating information given a specific movie. We could present some interesting
-statistics, such as number of ratings or scores, categorized by ages. (Figure \ref{fig:fig5} and \ref{fig:fig6}), or categorized
-by some interesting features such as locations. Please note that Figure \ref{fig:fig6} is a distribution figure,
-and we use different colors to denote the distribution percentage.
-
-\subsubsection{Part 3 Design}
-First we need to filter out the users we want, by selecting some features as in Figure \ref{fig:fig7}. Then we
-show the statistics as Figure \ref{fig:fig5} and \ref{fig:fig6}.
-
-\subsubsection{Part 4 Design}
-We can filter out the movies by selecting features as shown in Figure \ref{fig:fig4}. We can show the statistics as shown in
-Figure \ref{fig:fig9} and Figure \ref{fig:fig10}.
-
-\subsubsection{Part 5 Design}
-After some preprocessing of the data, such as clustering or collaborative filtering, we can show
-the dependencies of different groups of users and the movies. The groups are based on the features
-we have selected.
-
-\begin{figure}[h]
-\centering{
-\includegraphics[width=.7\linewidth]{1.pdf}
-}
-\caption{Search for user and filter the movie information}
-\label{fig:fig1}
-\end{figure}
-
-\begin{figure}[h]
-\centering{
-\includegraphics[width=.7\linewidth]{2.pdf}
-}
-\caption{Histogram of ratings grouped by genre}
-\label{fig:fig2}
-\end{figure}
-
 \begin{figure}[h]
 \centering{
 \includegraphics[width=.7\linewidth]{3.pdf}
@@ -162,13 +145,22 @@ we have selected.
 \label{fig:fig3}
 \end{figure}
 
+\subsubsection{Part 1 Design}
+
 \begin{figure}[h]
 \centering{
-\includegraphics[width=.7\linewidth]{4.pdf}
+\includegraphics[width=.7\linewidth]{11.pdf}
 }
-\caption{Filter of movie information}
-\label{fig:fig4}
+\caption{Rankings of movie scores}
+\label{fig:fig11}
 \end{figure}
+
+We can search the rating information given a specific user. Also we could filter out some types
+of movies we do not need, such as released year and genres (as shown in Figure \ref{fig:fig1}). After that, we can present the
+information grouped by genre, or just a scatter plot along the year x-axis. (see Figure \ref{fig:fig2} and \ref{fig:fig3}). Also
+we can rank the movies as shown in Figure \ref{fig:fig11}.
+
+\subsubsection{Part 2 Design}
 
 \begin{figure}[h]
 \centering{
@@ -186,6 +178,13 @@ we have selected.
 \label{fig:fig6}
 \end{figure}
 
+We can search the rating information given a specific movie. We could present some interesting
+statistics, such as number of ratings or scores, categorized by ages. (Figure \ref{fig:fig5} and \ref{fig:fig6}), or categorized
+by some interesting features such as locations. Please note that Figure \ref{fig:fig6} is a distribution figure,
+and we use different colors to denote the distribution percentage.
+
+\subsubsection{Part 3 Design}
+
 \begin{figure}[h]
 \centering{
 \includegraphics[width=.7\linewidth]{7.pdf}
@@ -194,12 +193,17 @@ we have selected.
 \label{fig:fig7}
 \end{figure}
 
+First we need to filter out the users we want, by selecting some features as in Figure \ref{fig:fig7}. Then we
+show the statistics as Figure \ref{fig:fig5} and \ref{fig:fig6}.
+
+\subsubsection{Part 4 Design}
+
 \begin{figure}[h]
 \centering{
-\includegraphics[width=.7\linewidth]{8.pdf}
+\includegraphics[width=.7\linewidth]{4.pdf}
 }
-\caption{Distributions of scores grouped by genres}
-\label{fig:fig8}
+\caption{Filter of movie information}
+\label{fig:fig4}
 \end{figure}
 
 \begin{figure}[h]
@@ -218,21 +222,21 @@ we have selected.
 \label{fig:fig10}
 \end{figure}
 
+We can filter out the movies by selecting features as shown in Figure \ref{fig:fig4}. We can show the statistics as shown in
+Figure \ref{fig:fig9} and Figure \ref{fig:fig10}.
+
+\subsubsection{Part 5 Design}
 \begin{figure}[h]
 \centering{
-\includegraphics[width=.7\linewidth]{11.pdf}
+\includegraphics[width=.7\linewidth]{8.pdf}
 }
-\caption{Rankings of movie scores}
-\label{fig:fig11}
+\caption{Distributions of scores grouped by genres}
+\label{fig:fig8}
 \end{figure}
 
-\begin{figure}[h]
-\centering{
-\includegraphics[width=.7\linewidth]{12.pdf}
-}
-\caption{Dependencies of users and movies}
-\label{fig:fig12}
-\end{figure}
+After some preprocessing of the data, such as clustering or collaborative filtering, we can show
+the dependencies of different groups of users and the movies. The groups are based on the features
+we have selected.
 
 \subsection{Our Design in Final Submission}
 
